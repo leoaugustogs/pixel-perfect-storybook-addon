@@ -5,4 +5,11 @@ module.exports = {
   ],
   addons: ["../preset.js", "@storybook/addon-essentials"],
   staticDirs: ['../public'],
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {}
+  },
+  docs: {
+    autodocs: true
+  }
 };
