@@ -1,13 +1,20 @@
 import { withOverlay } from "../withOverlay";
 
 
-export const globals = {
+export const globalTypes = {
   pixelPerfect: {
-    active: false,
-    overlay: {
-      src: "",
-      opacity: 1,
-    }
+    name: "Pixel Perfect",
+    description: "Pixel Perfect Overlay",
+    defaultValue: {
+      active: false,
+      overlay: {
+        src: "",
+        opacity: 1,
+        x: 0,
+        y: 0,
+        visualMode: "normal",
+      }
+    },
   },
 };
 
