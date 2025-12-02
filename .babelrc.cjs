@@ -5,6 +5,16 @@ module.exports = {
     "@babel/preset-react",
   ],
   env: {
+    cjs: {
+      plugins: [
+        [
+          "babel-plugin-add-import-extension",
+          {
+            extension: "cjs",
+          },
+        ],
+      ],
+    },
     esm: {
       presets: [
         [
