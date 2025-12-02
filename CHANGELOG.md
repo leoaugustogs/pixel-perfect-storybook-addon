@@ -1,3 +1,16 @@
+# v1.0.8 (Tue Dec 02 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'main' of https://github.com/leoaugustogs/pixel-perfect-storybook-addon ([@leoaugustogs](https://github.com/leoaugustogs))
+- fix: use .cjs extension for CommonJS output to avoid ESM/CJS conflicts ([@leoaugustogs](https://github.com/leoaugustogs))
+
+#### Authors: 1
+
+- [@leoaugustogs](https://github.com/leoaugustogs)
+
+---
+
 # v1.0.7 (Tue Dec 02 2025)
 
 #### ⚠️ Pushed to `main`
