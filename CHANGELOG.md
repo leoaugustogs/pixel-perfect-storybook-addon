@@ -1,3 +1,16 @@
+# v1.0.11 (Tue Dec 02 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'main' of https://github.com/leoaugustogs/pixel-perfect-storybook-addon ([@leoaugustogs](https://github.com/leoaugustogs))
+- fix: use ESM build for manager and preview to avoid browser CJS errors ([@leoaugustogs](https://github.com/leoaugustogs))
+
+#### Authors: 1
+
+- [@leoaugustogs](https://github.com/leoaugustogs)
+
+---
+
 # v1.0.10 (Tue Dec 02 2025)
 
 #### ⚠️ Pushed to `main`
