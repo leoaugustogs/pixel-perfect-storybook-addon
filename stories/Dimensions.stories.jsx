@@ -7,7 +7,8 @@ export default {
       overlay: {
         src: "https://placehold.co/600x400",
         opacity: 0.5,
-        width: "300px",
+        width: "150px",
+        height: "100px",
       },
     },
   },
