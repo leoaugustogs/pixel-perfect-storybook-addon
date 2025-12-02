@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useChannel } from "@storybook/preview-api";
-import { DecoratorFunction } from "@storybook/types";
+import { useChannel } from "storybook/internal/preview-api";
+import { DecoratorFunction } from "storybook/internal/types";
 import { DEFAULT_DYNAMIC_OVERLAY_OPTIONS, EVENTS } from "./constants";
 import { DynamicOverlayOptions } from "./types";
 import { renderOverlay, removeOverlay } from './utils/overlay';

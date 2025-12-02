@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useCallback } from "react";
 import { Checkbox, Slider } from "@mui/material";
-import { useAddonState, useStorybookState, useParameter, useChannel } from "@storybook/manager-api";
-import { themes } from "@storybook/theming";
+import { useAddonState, useStorybookState, useParameter, useChannel } from "storybook/internal/manager-api";
+import { themes } from "storybook/internal/theming";
 import ControlTable from './ui/control-table/control-table';
 import { ResetButton } from "./ui/reset-button/reset-button";
 import { DEFAULT_DYNAMIC_OVERLAY_OPTIONS, EVENTS, DYNAMIC_OVERLAYS_OPTIONS_STATE, PARAM_KEY } from "../../constants";

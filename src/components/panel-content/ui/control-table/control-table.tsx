@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { styled, themes } from "@storybook/theming";
+import { styled, themes } from "storybook/internal/theming";
 
 // Interfaces
 interface Cell {

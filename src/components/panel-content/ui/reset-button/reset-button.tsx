@@ -1,7 +1,7 @@
 import React from "react";
 import { IconButton, Tooltip } from "@mui/material";
 import { SettingsBackupRestore } from '@mui/icons-material';
-import { themes } from "@storybook/theming";
+import { themes } from "storybook/internal/theming";
 
 interface ResetButtonProps {
   title: string;
