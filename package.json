@@ -1,6 +1,7 @@
 {
   "name": "@lagosta/pixel-perfect-storybook-addon",
   "version": "1.0.4",
+  "type": "module",
   "description": "Build pixel perfect components by adding an overlaying image of component in Storybook's preview iframe.",
   "keywords": [
     "storybook-addons",
@@ -72,8 +73,8 @@
     "husky": "8.0.2",
     "prettier": "^2.3.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "rimraf": "^3.0.2",
     "storybook": "^9.1.4",
     "typescript": "^5.3.0",
@@ -81,9 +82,9 @@
     "zx": "^7.1.1"
   },
   "peerDependencies": {
-    "storybook": "^9.0.0",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "storybook": "^9.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
