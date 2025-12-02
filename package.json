@@ -1,6 +1,6 @@
 {
   "name": "@lagosta/pixel-perfect-storybook-addon",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "type": "module",
   "description": "Build pixel perfect components by adding an overlaying image of component in Storybook's preview iframe.",
   "keywords": [
