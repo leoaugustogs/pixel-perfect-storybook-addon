@@ -1,13 +1,23 @@
 import React, { useMemo, useEffect, useCallback } from "react";
-import { Checkbox, Slider } from "@mui/material";
+import { Form } from "storybook/internal/components";
 import { useAddonState, useStorybookState, useParameter, useChannel } from "storybook/internal/manager-api";
-import { themes } from "storybook/internal/theming";
+import { styled, themes } from "storybook/internal/theming";
 import ControlTable from './ui/control-table/control-table';
 import { ResetButton } from "./ui/reset-button/reset-button";
 import { VisualModeSelector } from "./ui/visual-mode-selector/visual-mode-selector";
 import { NudgeControls } from "./ui/nudge-controls/nudge-controls";
 import { DEFAULT_DYNAMIC_OVERLAY_OPTIONS, EVENTS, DYNAMIC_OVERLAYS_OPTIONS_STATE, PARAM_KEY } from "../../constants";
 import { Parameter, DynamicOverlayOptions, VisualMode } from "../../types";
+
+const RangeInput = styled.input({
+  width: '100%',
+  cursor: 'pointer',
+  accentColor: themes.normal.colorSecondary,
+  '&:disabled': {
+    cursor: 'not-allowed',
+    opacity: 0.5,
+  }
+});
 
 const PanelContent = () => {
   const parameter = useParameter<Parameter>(PARAM_KEY);
@@ -146,7 +156,8 @@ const PanelContent = () => {
           },
           {
             name: "Opacity",
-            control: <Slider
+            control: <RangeInput
+              type="range"
               value={
                 currentDynamicOverlayOptions?.opacity
                 ?? parameter?.overlay?.opacity
@@ -155,13 +166,9 @@ const PanelContent = () => {
               min={0}
               max={1}
               step={0.05}
-              onChange={(_, value) => updateOverlayOptions({ opacity: value as number })}
+              onChange={(e) => updateOverlayOptions({ opacity: Number(e.target.value) })}
               disabled={isOpacityDisabled}
               aria-label="Opacity"
-              valueLabelDisplay="auto"
-              sx={{
-                color: themes.normal.colorSecondary,
-              }}
             />,
             reset: <ResetButton
               title="Reset opacity"
@@ -171,16 +178,17 @@ const PanelContent = () => {
           },
           {
             name: "Enable color inversion",
-            control: <Checkbox
+            control: <Form.Input
+              type="checkbox"
               checked={
                 currentDynamicOverlayOptions.colorInversion
                 ?? parameter?.overlay?.colorInversion
                 ?? DEFAULT_DYNAMIC_OVERLAY_OPTIONS.colorInversion
               }
-              onChange={(_, value) => updateOverlayOptions({ colorInversion: value })}
+              onChange={(e) => updateOverlayOptions({ colorInversion: (e.target as HTMLInputElement).checked })}
               disabled={isOpacityDisabled}
               aria-label="Toggle color inversion"
-              sx={{
+              style={{
                 color: themes.normal.colorSecondary,
               }}
             />,

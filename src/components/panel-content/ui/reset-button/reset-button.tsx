@@ -1,6 +1,6 @@
 import React from "react";
-import { IconButton, Tooltip } from "@mui/material";
-import { SettingsBackupRestore } from '@mui/icons-material';
+import { IconButton } from "storybook/internal/components";
+import { SyncIcon } from "@storybook/icons";
 import { themes } from "storybook/internal/theming";
 
 interface ResetButtonProps {
@@ -11,14 +11,15 @@ interface ResetButtonProps {
 
 export const ResetButton = (props: ResetButtonProps) => {
   return (
-    <Tooltip title={props.title}>
-      <IconButton onClick={props.onClick}>
-        <SettingsBackupRestore
-          sx={{
-            color: props.canReset ? themes.normal.colorSecondary : themes.normal.base,
-          }}
-        />
-      </IconButton>
-    </Tooltip>
+    <IconButton 
+      onClick={props.onClick} 
+      title={props.title}
+    >
+      <SyncIcon 
+        style={{
+          color: props.canReset ? themes.normal.colorSecondary : themes.normal.base,
+        }} 
+      />
+    </IconButton>
   );
 };
