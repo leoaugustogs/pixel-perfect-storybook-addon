@@ -25,6 +25,7 @@ const PanelContent = () => {
   }, [currentDynamicOverlayOptions]);
 
   const updateOverlayOptions = useCallback((options: DynamicOverlayOptions) => {
+    console.log('[PixelPerfect] updateOverlayOptions called', options);
     setDynamicOverlaysOptions(
       Object.assign(
         {},

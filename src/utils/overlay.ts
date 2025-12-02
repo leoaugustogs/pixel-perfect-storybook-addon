@@ -9,13 +9,20 @@ export const renderOverlay = ({
   colorInversion,
 }: Required<OverlayOptions>) => {
   const root = document.querySelector(rootSelector) || document.querySelector("#storybook-root");
-  if (!root) return;
+  console.log('[PixelPerfect] renderOverlay: Finding root', { rootSelector, found: !!root, src, opacity, colorInversion });
+  
+  if (!root) {
+    console.error('[PixelPerfect] Root element not found!');
+    return;
+  }
 
   const rootRect = root.getBoundingClientRect();
+  console.log('[PixelPerfect] Root rect:', rootRect);
 
   const existingOverlay = root.querySelector(`#${overlayId}`) as HTMLElement;
 
   if (!existingOverlay) {
+    console.log('[PixelPerfect] Creating new overlay');
     const newOverlay = document.createElement("img");
     
     newOverlay.setAttribute("id", overlayId);
@@ -33,6 +40,7 @@ export const renderOverlay = ({
 
     root.appendChild(newOverlay);
   } else {
+    console.log('[PixelPerfect] Updating existing overlay');
     if (existingOverlay.getAttribute("src") !== src) {
       existingOverlay.setAttribute("src", src);
     }
