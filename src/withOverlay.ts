@@ -1,4 +1,6 @@
-import { DecoratorFunction, useChannel, useEffect, useState } from "@storybook/addons";
+import { useEffect, useState } from "react";
+import { useChannel } from "@storybook/preview-api";
+import { DecoratorFunction } from "@storybook/types";
 import { DEFAULT_DYNAMIC_OVERLAY_OPTIONS, EVENTS } from "./constants";
 import { DynamicOverlayOptions } from "./types";
 import { renderOverlay, removeOverlay } from './utils/overlay';
@@ -6,6 +8,9 @@ import { renderOverlay, removeOverlay } from './utils/overlay';
 export const withOverlay: DecoratorFunction = (StoryFn, context) => {
   const global = context.globals.pixelPerfect;
   const parameter = context.parameters.pixelPerfect;
+  
+  console.log('withOverlay', { global, parameter });
+
   const [
     currentDynamicOverlayOptions,
     setCurrentDynamicOverlayOptions

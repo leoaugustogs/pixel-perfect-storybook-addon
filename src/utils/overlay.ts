@@ -8,7 +8,7 @@ export const renderOverlay = ({
   opacity,
   colorInversion,
 }: Required<OverlayOptions>) => {
-  const root = document.querySelector(rootSelector);
+  const root = document.querySelector(rootSelector) || document.querySelector("#storybook-root");
   if (!root) return;
 
   const rootRect = root.getBoundingClientRect();
@@ -49,7 +49,7 @@ export const renderOverlay = ({
 }
 
 export const removeOverlay =() => {
-  const overlay = document.querySelector(`${rootSelector} #${overlayId}`);
+  const overlay = document.querySelector(`${rootSelector} #${overlayId}`) || document.querySelector(`#storybook-root #${overlayId}`);
   if (!overlay) return;
   overlay.remove();
 }
