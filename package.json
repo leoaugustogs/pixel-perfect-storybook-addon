@@ -27,7 +27,7 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
-    "./preset": "./preset.js",
+    "./preset": "./preset.cjs",
     "./package.json": "./package.json"
   },
   "files": [
