@@ -215,3 +215,5 @@ const PanelContent = () => {
     </div>
   );
 };
+
+export default PanelContent;
