@@ -1,3 +1,5 @@
+require("regenerator-runtime/runtime");
+
 module.exports = {
   parameters: {
     viewport: {
