@@ -7,6 +7,8 @@ export type OverlayOptions = {
   x?: number;
   y?: number;
   visualMode?: VisualMode;
+  width?: string | number;
+  height?: string | number;
 };
 
 export type Parameter = {

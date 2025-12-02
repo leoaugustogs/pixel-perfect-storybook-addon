@@ -3,6 +3,11 @@ import { OverlayOptions } from "../types";
 const rootSelector = "#root";
 const overlayId = "pixel-perfect-overlay";
 
+const toCssValue = (value?: string | number): string | undefined => {
+  if (value === undefined) return undefined;
+  return typeof value === 'number' ? `${value}px` : value;
+};
+
 export const renderOverlay = ({
   src,
   opacity,
@@ -10,6 +15,8 @@ export const renderOverlay = ({
   x = 0,
   y = 0,
   visualMode = 'normal',
+  width,
+  height,
 }: Required<OverlayOptions>) => {
   const root = document.querySelector(rootSelector) || document.querySelector("#storybook-root");
   
@@ -44,6 +51,13 @@ export const renderOverlay = ({
     overlay.style.filter = effectiveFilter;
     overlay.style.mixBlendMode = effectiveMixBlendMode;
     overlay.style.transform = `translate(${x}px, ${y}px)`;
+    
+    if (width !== undefined) {
+      overlay.style.width = toCssValue(width) as string;
+    }
+    if (height !== undefined) {
+      overlay.style.height = toCssValue(height) as string;
+    }
   };
 
   if (!existingOverlay) {
