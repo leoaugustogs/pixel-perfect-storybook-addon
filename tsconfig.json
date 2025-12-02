@@ -9,12 +9,13 @@
     "isolatedModules": true,
     "jsx": "react",
     "lib": ["es2017", "dom"],
-    "module": "commonjs",
+    "module": "es2015",
     "noImplicitAny": true,
     "rootDir": "./src",
     "skipLibCheck": true,
     "target": "es5",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "moduleResolution": "bundler"
   },
   "include": [
     "src/**/*"
