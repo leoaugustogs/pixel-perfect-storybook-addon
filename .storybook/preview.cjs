@@ -1,6 +1,17 @@
-require("regenerator-runtime/runtime");
-
 module.exports = {
+  globalTypes: {
+    pixelPerfect: {
+      name: "Pixel Perfect",
+      description: "Pixel Perfect Overlay",
+      defaultValue: {
+        active: false,
+        overlay: {
+          src: "",
+          opacity: 1,
+        }
+      },
+    },
+  },
   parameters: {
     viewport: {
       defaultViewport: 'desktop',
