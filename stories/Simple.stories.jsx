@@ -5,7 +5,7 @@ export default {
   parameters: {
     pixelPerfect: {
       overlay: {
-        src: "https://via.placeholder.com/600x400",
+        src: "https://placehold.co/600x400",
         opacity: 0.5,
       },
     },

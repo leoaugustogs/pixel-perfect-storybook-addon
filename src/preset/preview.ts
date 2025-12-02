@@ -1,5 +1,6 @@
 import { withOverlay } from "../withOverlay";
 
+
 export const globals = {
   pixelPerfect: {
     active: false,
