@@ -1,3 +1,17 @@
+# v1.0.9 (Tue Dec 02 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'main' of https://github.com/leoaugustogs/pixel-perfect-storybook-addon ([@leoaugustogs](https://github.com/leoaugustogs))
+- chore: yarn lock ([@leoaugustogs](https://github.com/leoaugustogs))
+- fix: ensure CJS build uses correct file extensions for imports ([@leoaugustogs](https://github.com/leoaugustogs))
+
+#### Authors: 1
+
+- [@leoaugustogs](https://github.com/leoaugustogs)
+
+---
+
 # v1.0.8 (Tue Dec 02 2025)
 
 #### ⚠️ Pushed to `main`
