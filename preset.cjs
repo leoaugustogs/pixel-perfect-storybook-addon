@@ -1,9 +1,9 @@
 function previewAnnotations(entry = []) {
-  return [...entry, require.resolve("./dist/cjs/preset/preview.cjs")];
+  return [...entry, require.resolve("./dist/esm/preset/preview.js")];
 }
 
 function managerEntries(entry = []) {
-  return [...entry, require.resolve("./dist/cjs/preset/manager.cjs")];
+  return [...entry, require.resolve("./dist/esm/preset/manager.js")];
 }
 
 module.exports = {
