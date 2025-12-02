@@ -1,3 +1,16 @@
+# v1.0.10 (Tue Dec 02 2025)
+
+#### ⚠️ Pushed to `main`
+
+- Merge branch 'main' of https://github.com/leoaugustogs/pixel-perfect-storybook-addon ([@leoaugustogs](https://github.com/leoaugustogs))
+- fix: include preset.cjs in published package ([@leoaugustogs](https://github.com/leoaugustogs))
+
+#### Authors: 1
+
+- [@leoaugustogs](https://github.com/leoaugustogs)
+
+---
+
 # v1.0.9 (Tue Dec 02 2025)
 
 #### ⚠️ Pushed to `main`
