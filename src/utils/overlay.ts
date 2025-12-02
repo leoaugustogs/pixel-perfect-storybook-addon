@@ -7,9 +7,12 @@ export const renderOverlay = ({
   src,
   opacity,
   colorInversion,
+  x = 0,
+  y = 0,
+  visualMode = 'normal',
 }: Required<OverlayOptions>) => {
   const root = document.querySelector(rootSelector) || document.querySelector("#storybook-root");
-  console.log('[PixelPerfect] renderOverlay: Finding root', { rootSelector, found: !!root, src, opacity, colorInversion });
+  console.log('[PixelPerfect] renderOverlay', { src, opacity, colorInversion, x, y, visualMode });
   
   if (!root) {
     console.error('[PixelPerfect] Root element not found!');
@@ -17,42 +20,48 @@ export const renderOverlay = ({
   }
 
   const rootRect = root.getBoundingClientRect();
-  console.log('[PixelPerfect] Root rect:', rootRect);
-
   const existingOverlay = root.querySelector(`#${overlayId}`) as HTMLElement;
+
+  // Determine effective opacity and filters based on visual mode
+  let effectiveOpacity = `${opacity}`;
+  let effectiveFilter = colorInversion ? "invert(1)" : "none";
+  let effectiveMixBlendMode = "normal";
+
+  if (visualMode === 'rendering-drift') {
+    effectiveOpacity = '1';
+    effectiveMixBlendMode = 'difference';
+    effectiveFilter = 'none'; // Override color inversion in this mode
+  } else if (visualMode === 'structural-drift') {
+    effectiveOpacity = '1';
+    effectiveMixBlendMode = 'difference';
+    effectiveFilter = 'grayscale(100%) contrast(150%) brightness(1000%)';
+  }
+
+  const updateOverlayStyles = (overlay: HTMLElement) => {
+    overlay.style.top = `${rootRect.top}px`;
+    overlay.style.left = `${rootRect.left}px`;
+    
+    overlay.setAttribute("src", src);
+    overlay.style.opacity = effectiveOpacity;
+    overlay.style.filter = effectiveFilter;
+    overlay.style.mixBlendMode = effectiveMixBlendMode;
+    overlay.style.transform = `translate(${x}px, ${y}px)`;
+  };
 
   if (!existingOverlay) {
     console.log('[PixelPerfect] Creating new overlay');
     const newOverlay = document.createElement("img");
-    
     newOverlay.setAttribute("id", overlayId);
     newOverlay.setAttribute("alt", "pixel perfect overlaying image");
     newOverlay.style.position = "absolute";
-    newOverlay.style.top = `${rootRect.top}px`;
-    newOverlay.style.left = `${rootRect.left}px`;
     newOverlay.style.zIndex = "100000";
     newOverlay.style.pointerEvents = "none";
     
-    // Customizations
-    newOverlay.setAttribute("src", src);
-    newOverlay.style.opacity = `${opacity}`;
-    newOverlay.style.filter = colorInversion ? "invert(1)" : "none";
-
+    updateOverlayStyles(newOverlay);
     root.appendChild(newOverlay);
   } else {
     console.log('[PixelPerfect] Updating existing overlay');
-    if (existingOverlay.getAttribute("src") !== src) {
-      existingOverlay.setAttribute("src", src);
-    }
-
-    if (Number(existingOverlay.style.opacity) !== opacity) {
-      existingOverlay.style.opacity = `${opacity}`;
-    }
-
-    const isInverted = existingOverlay.style.filter === "invert(1)";
-    if (isInverted !== colorInversion) {
-      existingOverlay.style.filter = colorInversion ? "invert(1)" : "none";
-    }
+    updateOverlayStyles(existingOverlay);
   }
 }
 
