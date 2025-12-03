@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useCallback } from "react";
-import { Form } from "storybook/internal/components";
+import { Form, Button } from "storybook/internal/components";
 import { useAddonState, useStorybookState, useParameter, useChannel } from "storybook/internal/manager-api";
 import { styled, themes } from "storybook/internal/theming";
 import ControlTable from './ui/control-table/control-table';
@@ -180,9 +180,9 @@ const PanelContent = () => {
             control: <Form.Input
               type="checkbox"
               checked={
-                currentDynamicOverlayOptions.colorInversion
+                !!(currentDynamicOverlayOptions.colorInversion
                 ?? parameter?.overlay?.colorInversion
-                ?? DEFAULT_DYNAMIC_OVERLAY_OPTIONS.colorInversion
+                ?? DEFAULT_DYNAMIC_OVERLAY_OPTIONS.colorInversion)
               }
               onChange={(e) => updateOverlayOptions({ colorInversion: (e.target as HTMLInputElement).checked })}
               disabled={isOpacityDisabled}
@@ -196,6 +196,102 @@ const PanelContent = () => {
               canReset={isDifferentFromDefault("colorInversion")}
               onClick={() => resetOverlayOptions("colorInversion")}
             />,
+          },
+          {
+            name: "Sensitivity",
+            control: <RangeInput
+              type="range"
+              value={
+                currentDynamicOverlayOptions?.sensitivity
+                ?? parameter?.overlay?.sensitivity
+                ?? DEFAULT_DYNAMIC_OVERLAY_OPTIONS.sensitivity
+              }
+              min={0}
+              max={1}
+              step={0.05}
+              onChange={(e) => updateOverlayOptions({ sensitivity: Number(e.target.value) })}
+              disabled={currentVisualMode !== 'diff-heatmap' && !currentDynamicOverlayOptions.showPixelMatchDiff}
+              aria-label="Sensitivity"
+            />,
+            reset: <ResetButton
+              title="Reset sensitivity"
+              canReset={isDifferentFromDefault("sensitivity")}
+              onClick={() => resetOverlayOptions("sensitivity")}
+            />,
+          },
+          {
+            name: "Show Pixel Grid",
+            control: <Form.Input
+              type="checkbox"
+              checked={
+                !!(currentDynamicOverlayOptions.showGrid
+                ?? parameter?.overlay?.showGrid
+                ?? DEFAULT_DYNAMIC_OVERLAY_OPTIONS.showGrid)
+              }
+              onChange={(e) => updateOverlayOptions({ showGrid: (e.target as HTMLInputElement).checked })}
+              aria-label="Show Pixel Grid"
+              style={{
+                color: themes.normal.colorSecondary,
+              }}
+            />,
+            reset: <ResetButton
+              title="Reset grid"
+              canReset={isDifferentFromDefault("showGrid")}
+              onClick={() => resetOverlayOptions("showGrid")}
+            />,
+          },
+          {
+            name: "Show PixelMatch Diff",
+            control: <Form.Input
+              type="checkbox"
+              checked={
+                !!(currentDynamicOverlayOptions.showPixelMatchDiff
+                ?? parameter?.overlay?.showPixelMatchDiff
+                ?? DEFAULT_DYNAMIC_OVERLAY_OPTIONS.showPixelMatchDiff)
+              }
+              onChange={(e) => updateOverlayOptions({ showPixelMatchDiff: (e.target as HTMLInputElement).checked })}
+              aria-label="Show PixelMatch Diff"
+              style={{
+                color: themes.normal.colorSecondary,
+              }}
+            />,
+            reset: <ResetButton
+              title="Reset diff toggle"
+              canReset={isDifferentFromDefault("showPixelMatchDiff")}
+              onClick={() => resetOverlayOptions("showPixelMatchDiff")}
+            />,
+          },
+          {
+            name: "Ignore Transparency",
+            control: <Form.Input
+              type="checkbox"
+              checked={
+                !!(currentDynamicOverlayOptions.ignoreTransparency
+                ?? parameter?.overlay?.ignoreTransparency
+                ?? DEFAULT_DYNAMIC_OVERLAY_OPTIONS.ignoreTransparency)
+              }
+              onChange={(e) => updateOverlayOptions({ ignoreTransparency: (e.target as HTMLInputElement).checked })}
+              disabled={!currentDynamicOverlayOptions.showPixelMatchDiff}
+              aria-label="Ignore Transparency"
+              style={{
+                color: themes.normal.colorSecondary,
+              }}
+            />,
+            reset: <ResetButton
+              title="Reset transparency"
+              canReset={isDifferentFromDefault("ignoreTransparency")}
+              onClick={() => resetOverlayOptions("ignoreTransparency")}
+            />,
+          },
+          {
+            name: "PixelMatch",
+            control: <Button
+              onClick={() => emit(EVENTS.RECALCULATE_PIXELMATCH)}
+              style={{ width: '100%' }}
+            >
+              Recalculate Diff
+            </Button>,
+            reset: <div/>,
           },
           {
             name: "Nudge",
