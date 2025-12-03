@@ -67,6 +67,7 @@
     "@commitlint/config-conventional": "17.2.0",
     "@storybook/addon-docs": "9.1.4",
     "@storybook/react-webpack5": "9.1.4",
+    "@types/pixelmatch": "^5.2.6",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "auto": "^11.3.6",
@@ -120,6 +121,7 @@
     "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
   },
   "dependencies": {
-    "@storybook/icons": "^2.0.1"
+    "@storybook/icons": "^2.0.1",
+    "pixelmatch": "^7.1.0"
   }
 }

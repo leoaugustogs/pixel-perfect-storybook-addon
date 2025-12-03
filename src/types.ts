@@ -1,4 +1,4 @@
-export type VisualMode = 'normal' | 'rendering-drift' | 'structural-drift';
+export type VisualMode = 'normal' | 'rendering-drift' | 'structural-drift' | 'diff-heatmap';
 
 export type OverlayOptions = {
   src: string;
@@ -9,6 +9,11 @@ export type OverlayOptions = {
   visualMode?: VisualMode;
   width?: string | number;
   height?: string | number;
+  sensitivity?: number;
+  showGrid?: boolean;
+  target?: string;
+  showPixelMatchDiff?: boolean;
+  ignoreTransparency?: boolean;
 };
 
 export type Parameter = {

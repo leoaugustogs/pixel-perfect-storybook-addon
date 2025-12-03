@@ -10,8 +10,13 @@ export const DYNAMIC_OVERLAYS_OPTIONS_STATE = `${ADDON_ID}/dynamic-overlays-opti
 export const DEFAULT_DYNAMIC_OVERLAY_OPTIONS: DynamicOverlayOptions = {
   opacity: 0.5,
   colorInversion: true,
+  sensitivity: 0,
+  showGrid: false,
+  showPixelMatchDiff: false,
+  ignoreTransparency: false,
 };
 
 export const EVENTS = {
-  DYNAMIC_OVERLAY_OPTIONS_CHANGED: `${ADDON_ID}/dynamic-overlay-options-changed`
+  DYNAMIC_OVERLAY_OPTIONS_CHANGED: `${ADDON_ID}/dynamic-overlay-options-changed`,
+  RECALCULATE_PIXELMATCH: `${ADDON_ID}/recalculate-pixelmatch`,
 };

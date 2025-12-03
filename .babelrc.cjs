@@ -1,11 +1,24 @@
 module.exports = {
   presets: [
-    "@babel/preset-env",
     "@babel/preset-typescript",
     "@babel/preset-react",
   ],
   env: {
     cjs: {
+      presets: [
+        [
+          "@babel/preset-env",
+          {
+            targets: {
+              node: "14",
+            },
+            exclude: [
+              "@babel/plugin-transform-regenerator",
+              "@babel/plugin-transform-async-to-generator"
+            ]
+          }
+        ],
+      ],
       plugins: [
         [
           "babel-plugin-add-import-extension",
@@ -21,6 +34,14 @@ module.exports = {
           "@babel/preset-env",
           {
             modules: false,
+            targets: {
+              esmodules: true,
+            },
+            bugfixes: true,
+            exclude: [
+              "@babel/plugin-transform-regenerator",
+              "@babel/plugin-transform-async-to-generator"
+            ]
           },
         ],
       ],

@@ -2,7 +2,7 @@ import { useChannel, useEffect, useState } from "storybook/internal/preview-api"
 import { DecoratorFunction } from "storybook/internal/types";
 import { DEFAULT_DYNAMIC_OVERLAY_OPTIONS, EVENTS } from "./constants";
 import { DynamicOverlayOptions } from "./types";
-import { renderOverlay, removeOverlay } from './utils/overlay';
+import { renderOverlay, removeOverlay, clearPixelMatchCache } from './utils/overlay';
 
 export const withOverlay: DecoratorFunction = (StoryFn, context) => {
   const global = context.globals.pixelPerfect;
@@ -17,6 +17,17 @@ export const withOverlay: DecoratorFunction = (StoryFn, context) => {
     [EVENTS.DYNAMIC_OVERLAY_OPTIONS_CHANGED]: (dynamicOverlayOptions: DynamicOverlayOptions) => {
       setCurrentDynamicOverlayOptions(dynamicOverlayOptions);
     },
+    [EVENTS.RECALCULATE_PIXELMATCH]: () => {
+      clearPixelMatchCache();
+      if (global?.active && parameter) {
+         const options = {
+          ...DEFAULT_DYNAMIC_OVERLAY_OPTIONS,
+          ...parameter.overlay,
+          ...currentDynamicOverlayOptions,
+        };
+        renderOverlay(options);
+      }
+    }
   });
 
   useEffect(() => {
